@@ -1,17 +1,18 @@
-import Button from 'react-bootstrap/Button';
-import './App.css'
-import { ToastContainer, toast } from 'react-toastify';
-import { MdAdsClick } from "react-icons/md";
-function App() {
-const notify = () => toast.dark("Hello world!");
 
-  
+import AppRoutes from '../routes/AppRoutes.jsx'
+import './App.css'
+
+
+
+
+
+function App() {
 
   return (
     <>
-    <h1 className='text-center text-danger'>Comming soon...</h1>
-    <Button variant="primary" onClick={notify}>Click me <MdAdsClick></MdAdsClick></Button>
-    <ToastContainer/>
+    <AppRoutes />
+    
+  
     </>
   )
 }

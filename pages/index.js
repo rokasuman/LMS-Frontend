@@ -1,0 +1,6 @@
+export {default as HomePage} from "./home/HomePage"
+export {default as DashboardPages} from "./dashboard/DashboardPages"
+export {default as SignUpPage} from "./auth/SignUpPage"
+export {default as LogIn} from "./auth/LogIn"
+export {default as ForgetPasswordPage} from "./auth/ForgetPasswordPage"
+export {default as BookLandingPage} from "./books/BookLandingPage"
