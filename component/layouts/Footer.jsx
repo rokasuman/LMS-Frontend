@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <div className='bg-dark text-white text-center p-3'>
-        All copyright reserved || made by Suman 
+        All copyright reserved || Made by Suman 
     </div>
   )
 }
