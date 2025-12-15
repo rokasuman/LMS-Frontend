@@ -15,9 +15,8 @@ import {
   Profile,
   BorrowBooks
 } from "../pages";
-import DefaultLayout from "../component/layouts/DefaultLayout";
-import UserLayout from "../component/layouts/UserLayout";
-
+import DefaultLayout from "@component/layouts/DefaultLayout";
+import UserLayout from "@component/layouts/UserLayout";
 
 const AppRoutes = () => {
   return (

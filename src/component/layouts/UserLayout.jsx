@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import { Sidebar } from "./Sidebar";
 import { Outlet } from "react-router-dom";
-import { AuthRoute } from "../../pages/auth/AuthRoute";
+import { AuthRoute } from "../../../pages/auth/AuthRoute";
 
 const UserLayout = () => {
   return (
