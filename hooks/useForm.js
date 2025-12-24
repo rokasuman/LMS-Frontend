@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { validator } from "../src/utlis/validatePassword";
 
 // function to update the state
-const handleOnchange = (e, form, setForm) => {
+const handleOnChange = (e, form, setForm) => {
   const { name, value } = e.target;
 
   setForm({
@@ -13,20 +13,21 @@ const handleOnchange = (e, form, setForm) => {
 
 const useForm = (initialState) => {
   const [form, setForm] = useState(initialState);
-  const [passwordError,setPasswordError] = useState([])
+  const [passwordError, setPasswordError] = useState([]);
 
-  //only when password and confirm Password is changed
-  useEffect(()=>{
-    const errorArg = validator(form.password,form.confirmPassword)
-    setPasswordError(errorArg)
-  },[form.password,form.confirmPassword])
+  // only when password and confirmPassword change
+  useEffect(() => {
+    const errorArg = validator(form.password, form.confirmPassword);
+    setPasswordError(errorArg);
+  }, [form.password, form.confirmPassword]);
 
   return {
     form,
     setForm,
     passwordError,
-    handleOnchange: (e) => handleOnchange(e, form, setForm),
+    handleOnchange: (e) => handleOnChange(e, form, setForm), 
   };
 };
 
 export default useForm;
+

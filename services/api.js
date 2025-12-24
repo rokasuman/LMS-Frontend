@@ -3,7 +3,7 @@ import { data } from "react-router";
 import { toast } from "react-toastify";
 export const apiProcessor = async ({ url, method, payload,showToast }) => {
   try {
-    const responsePending =  axios({
+    const responsePending = await axios({
       method,
       url,
       data: payload,
@@ -13,7 +13,7 @@ export const apiProcessor = async ({ url, method, payload,showToast }) => {
             pending: "Please wait..."
 
         })
-        const {data} = await responsePending;
+        const {data} = responsePending;
       showToast && toast[data.status](data.message)
 
     }
@@ -22,6 +22,11 @@ export const apiProcessor = async ({ url, method, payload,showToast }) => {
   } catch (error) {
     console.log(error)
     const msg = error?.response?.data?.message || error.message;
-    toast.error(msg)
+    showToast && toast.error(msg)
+
+    return{
+      status:"error",
+      message:msg,
+    }
   }
 };

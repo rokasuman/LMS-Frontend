@@ -13,7 +13,8 @@ import {
   UserPage,
   NewBookPage,
   Profile,
-  BorrowBooks
+  BorrowBooks,
+  VerfiyUser
 } from "../pages";
 import DefaultLayout from "@component/layouts/DefaultLayout";
 import UserLayout from "@component/layouts/UserLayout";
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route path="/" element={<DefaultLayout><HomePage/></DefaultLayout>} />
         <Route path="/login" element={<DefaultLayout><LogIn/></DefaultLayout>} />
         <Route path="/signup" element={<DefaultLayout><SignUpPage/></DefaultLayout>} />
+        <Route path="/activate-user" element={<DefaultLayout><VerfiyUser/></DefaultLayout>} />
         <Route path="/forget-password" element={<DefaultLayout><ForgetPasswordPage/></DefaultLayout>} />
 
         {/* private pages */}

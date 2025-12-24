@@ -32,7 +32,7 @@ const SignUpPage = () => {
   const payload = { fName, lName, ...rest };
 
   const result = await signUpNewUserApi(payload);
-  console.log(result);
+  console.log(result)
 };
 console.log(passwordError)
   return (

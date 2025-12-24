@@ -6,7 +6,7 @@ export const validator = (password = '', confirmPassword = '') => {
     !/[A-Z]/.test(password) && error.push("Password must contain at least one UpperCase Letter")
     !/[a-z]/.test(password) && error.push("Password must contain at least one LowerCase Letter")
     !/[0-9]/.test(password) && error.push("Password must contain at least one Number")
-    !/[!@#$%^&*()\{}\[\]]/.test(password) && error.push("Password must contain at least one Special character !@#$%^&*(){}[]")
+    !/[!@#$%^&*(){}[]]/.test(password) && error.push("Password must contain at least one Special character !@#$%^&*(){}[]")
 
     password !== confirmPassword && error.push("Passwords do not match")
 

@@ -11,7 +11,7 @@ export const signUpNewUserApi = async (payload) => {
       url: `${authApiEP}/register`,
       method: "post",
       payload,
-      showToast:true,
+      showToast: true,
     };
 
     const result = await apiProcessor(obj);
@@ -23,4 +23,15 @@ export const signUpNewUserApi = async (payload) => {
       message: error.message,
     };
   }
+};
+
+// api to call the response for the activated user
+export const activateUserApi = async (payload) => {
+  const obj = {
+    url: authApiEP + "/activate-user",
+    method: "post",
+    payload,
+  };
+
+  return await apiProcessor(obj);
 };
