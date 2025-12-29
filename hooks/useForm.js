@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { validator } from "../src/utlis/validatePassword";
 
 // function to update the state
-const handleOnChange = (e, form, setForm) => {
+const handleOnchange = (e, form, setForm) => {
   const { name, value } = e.target;
 
   setForm({
@@ -25,9 +25,8 @@ const useForm = (initialState) => {
     form,
     setForm,
     passwordError,
-    handleOnchange: (e) => handleOnChange(e, form, setForm), 
+    handleOnchange: (e) => handleOnchange(e, form, setForm),
   };
 };
 
 export default useForm;
-

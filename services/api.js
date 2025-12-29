@@ -1,32 +1,42 @@
 import axios from "axios";
-import { data } from "react-router";
 import { toast } from "react-toastify";
-export const apiProcessor = async ({ url, method, payload,showToast }) => {
+
+
+const getAccessJWT = () =>{
+  return sessionStorage.getItem("accessJWT")
+}
+export const apiProcessor = async ({ url, method, payload, showToast,isPrivateCall }) => {
   try {
-    const responsePending = await axios({
+    const headers = {}
+    if(isPrivateCall){
+      headers.authorization = "bearer " + getAccessJWT();
+    }
+    const responsePending = axios({
       method,
       url,
       data: payload,
+      headers,
     });
-    if(showToast){
-        toast.promise(responsePending,{
-            pending: "Please wait..."
 
-        })
-        const {data} = responsePending;
-      showToast && toast[data.status](data.message)
-
+    if (showToast) {
+      toast.promise(responsePending, {
+        pending: "Please wait...",
+      });
     }
+
+    const { data } = await responsePending;
+
+    showToast && toast[data.status](data.message);
 
     return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     const msg = error?.response?.data?.message || error.message;
-    showToast && toast.error(msg)
+    showToast && toast.error(msg);
 
-    return{
-      status:"error",
-      message:msg,
-    }
+    return {
+      status: "error",
+      message: msg,
+    };
   }
 };

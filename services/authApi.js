@@ -35,3 +35,15 @@ export const activateUserApi = async (payload) => {
 
   return await apiProcessor(obj);
 };
+
+
+// api to connect with login 
+export const signInUserApi =async (payload)=>{
+  const obj ={
+    url: authApiEP + "/login",
+    method : "post",
+    payload,
+   showToast:true,
+  }
+  return apiProcessor(obj)
+} 

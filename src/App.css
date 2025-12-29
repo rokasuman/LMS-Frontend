@@ -2,7 +2,6 @@
     min-height: 85.5vh;
 }
 .signup-page{
-       /* keeps it fixed behind content */
   top: 0;
   left: 2;
   width: 100%;
@@ -17,5 +16,35 @@
 .signup-card {
   width: 350px;
   background: rgba(234, 234, 234, 0.5);
+  backdrop-filter: blur(4px);
+}
+/*login css*/
+.login-page {
+  min-height: 100vh;
+  background-image: url("login.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 350px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+ background: rgba(234, 234, 234, 0.8);
   backdrop-filter: blur(4px);
 }

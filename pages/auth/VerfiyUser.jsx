@@ -8,18 +8,18 @@ const VerfiyUser = () => {
   const [isPending, setIsPending] = useState(true);
   const [searchParams] = useSearchParams();
   const [response, setResponse] = useState({});
-  const nagivate = useNavigate();
+  const navigate = useNavigate();
 
-  //to avoid calling ethe api twice
+  // to avoid calling the api twice
   const shouldFetchRef = useRef(true);
 
   const sessionId = searchParams.get("sessionId");
   const t = searchParams.get("t");
-  console.log(searchParams);
 
-  //useEffect
   useEffect(() => {
-    if (sessionId && t && shouldFetchRef) {
+    if (sessionId && t && shouldFetchRef.current) {
+      shouldFetchRef.current = false;
+
       (async () => {
         try {
           const result = await activateUserApi({ sessionId, t });
@@ -27,16 +27,20 @@ const VerfiyUser = () => {
           setIsPending(false);
         } catch (error) {
           console.error("Error activating user:", error);
+          setIsPending(false);
         }
       })();
-      shouldFetchRef.current = false;
-    }
-    if (response.status === "success") {
-      setTimeout(() => {
-        nagivate("./login");
-      }, 3000);
     }
   }, [sessionId, t]);
+
+  useEffect(() => {
+    if (response.status === "success") {
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+  }, [response.status, navigate]);
+
   return (
     <div className="py-5 px-5">
       {isPending && (
@@ -45,7 +49,7 @@ const VerfiyUser = () => {
           style={{ width: "450px" }}
         >
           <Spinner animation="border" variant="primary" />
-          <div>Please do not go back or referce the Brower. Please wait...</div>
+          <div>Please do not go back or refresh the browser. Please wait...</div>
         </div>
       )}
 
