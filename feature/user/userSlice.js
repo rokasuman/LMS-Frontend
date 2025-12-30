@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: {},
+  user: {},    // store the logged-in user
+  loading: false // optional: to prevent navbar flash
 };
 
 const userSlice = createSlice({
@@ -10,10 +11,19 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
+      state.loading = false;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    logoutUser: (state) => {
+      state.user = null;
+      state.loading = false;
+      
+
     },
   },
 });
 
-const { reducer, actions } = userSlice;
-export const { setUser } = actions;
-export default reducer;
+export const { setUser, setLoading, logoutUser } = userSlice.actions;
+export default userSlice.reducer;

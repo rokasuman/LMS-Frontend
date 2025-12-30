@@ -3,11 +3,12 @@ import { validator } from "../src/utlis/validatePassword";
 
 // function to update the state
 const handleOnchange = (e, form, setForm) => {
-  const { name, value } = e.target;
+  const { name, value,email } = e.target;
 
   setForm({
     ...form,
     [name]: value,
+    email
   });
 };
 

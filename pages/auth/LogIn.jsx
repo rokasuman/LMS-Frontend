@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useForm from "../../hooks/useForm.js";
 import { signInUserApi } from "../../services/authApi.js";
 //import { fetchUserApi } from "../../feature/user/userApi.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUserAction } from "../../feature/user/userAction.jsx";
+import { useNavigate } from "react-router-dom";
+
+
 const initialState = {
   email: "",
   password: "",
@@ -12,6 +15,14 @@ const initialState = {
 const LogIn = () => {
   const { form, handleOnchange } = useForm(initialState);
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+const {user}= useSelector((state)=>state.userInfo)
+
+useEffect(()=>{
+  user?._id && navigate("/user");
+},[user?._id, navigate])
+
   const handleOnSubmit = async(e) => {
     e.preventDefault();
   console.log(form);
