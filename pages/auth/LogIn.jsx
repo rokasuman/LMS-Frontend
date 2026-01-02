@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserAction } from "../../feature/user/userAction.jsx";
 import { useNavigate } from "react-router-dom";
 
-
 const initialState = {
   email: "",
   password: "",
@@ -14,38 +13,36 @@ const initialState = {
 
 const LogIn = () => {
   const { form, handleOnchange } = useForm(initialState);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+ 
 
-const {user}= useSelector((state)=>state.userInfo)
+  const { user } = useSelector((state) => state.userInfo);
+ 
+  useEffect(() => {
+    user?._id && navigate("/user");
+  }, [user?._id, navigate]);
 
-useEffect(()=>{
-  user?._id && navigate("/user");
-},[user?._id, navigate])
-
-  const handleOnSubmit = async(e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-  console.log(form);
+    console.log(form);
 
-  // intergrating the login- form 
-  if(form.email && form.password){
-    const {payload} = await signInUserApi(form);
-    if(payload?.accessJWT){
-    sessionStorage.setItem('accessJWT',payload.accessJWT)
-     localStorage.setItem('refreshJWT',payload.refreshJWT)
-     
-     //call api to fech the user 
-    dispatch(fetchUserAction());
+    // intergrating the login- form
+    if (form.email && form.password) {
+      const { payload } = await signInUserApi(form);
+      if (payload?.accessJWT) {
+        sessionStorage.setItem("accessJWT", payload.accessJWT);
+        localStorage.setItem("refreshJWT", payload.refreshJWT);
+
+        //call api to fech the user
+        dispatch(fetchUserAction());
+      }
+      // storing the tokens in sessionStorage and localstorage
+
+      //TODO: get user to redirecting to the dashboard
+    } else {
+      console.log("Both input must be filled");
     }
-    // storing the tokens in sessionStorage and localstorage
-    
-     
-     //TODO: get user to redirecting to the dashboard
-    
-  }else{
-    console.log("Both input must be filled")
-  }
-
   };
 
   return (
@@ -77,7 +74,7 @@ useEffect(()=>{
                 name="password"
                 className="form-control"
                 required
-                value={form.password} 
+                value={form.password}
                 onChange={handleOnchange}
               />
             </div>

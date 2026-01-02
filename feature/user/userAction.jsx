@@ -8,11 +8,11 @@ export const fetchUserAction = () => async (dispatch) => {
     if (status === "success" && payload?._id) {
       dispatch(setUser(payload));
     } else {
-      dispatch(setUser(null)); // reset user if not found
+      dispatch(setUser(null)); 
     }
   } catch (error) {
     console.log(error)
-    dispatch(setUser(null)); // reset on API error
+    dispatch(setUser(null)); 
   }
 };
 

@@ -47,3 +47,24 @@ export const signInUserApi =async (payload)=>{
   }
   return apiProcessor(obj)
 } 
+
+//api to request password otp
+
+export const requestPassRestOTPApi = (payload) =>{
+  const obj = {
+    url :authApiEP + "/otp",
+    method: "post",
+    payload,
+  }
+  return apiProcessor(obj)
+}
+
+//reser password api 
+export const PasswordResApi = (payload) =>{
+  const obj = {
+    url :authApiEP + "/reset-password",
+    method: "post",
+    payload,
+  }
+  return apiProcessor(obj)
+}
