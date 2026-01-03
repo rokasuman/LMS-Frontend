@@ -18,8 +18,11 @@ const UserLayout = () => {
               <div>Welcome back</div>
               <p>Suman Roka</p>
             </div>
-            <hr />
-            <Sidebar />
+            <hr /> 
+            <div>
+              <Sidebar />
+            </div>
+          
           </div>
 
         

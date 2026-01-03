@@ -20,3 +20,19 @@ export const postNewBookApi = async (payload)=>{
         
     }
 }
+//for admin 
+export const AdminFetchBookApi = async ()=>{
+    try {
+        const obj = {
+            url :bookApiEP + "/admin",
+            method :"get",
+            isPrivateCall : true
+        }
+        const result = await apiProcessor(obj)
+        return result
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+}
