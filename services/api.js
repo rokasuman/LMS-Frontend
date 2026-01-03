@@ -9,14 +9,21 @@ export const apiProcessor = async ({ url, method, payload, showToast,isPrivateCa
   try {
     const headers = {}
     if(isPrivateCall){
-      headers.authorization = "bearer " + getAccessJWT();
+      const token = getAccessJWT()
+      if(token){
+        headers.authorization = "bearer " + getAccessJWT();
+    }else{
+      alert("No token. please logout and login.")
     }
+      }
+  
     const responsePending = axios({
       method,
       url,
       data: payload,
       headers,
     });
+   
 
     if (showToast) {
       toast.promise(responsePending, {
@@ -25,15 +32,20 @@ export const apiProcessor = async ({ url, method, payload, showToast,isPrivateCa
     }
 
     const { data } = await responsePending;
-
-    showToast && toast[data.status](data.message);
+    if(showToast){
+      if(data.status === "success"){
+        toast.success(data.message)
+      }else{
+        toast.error(data.message)
+      }
+    }
 
     return data;
   } catch (error) {
-    console.log(error);
+
     const msg = error?.response?.data?.message || error.message;
     showToast && toast.error(msg);
-
+    console.log(error);
     return {
       status: "error",
       message: msg,

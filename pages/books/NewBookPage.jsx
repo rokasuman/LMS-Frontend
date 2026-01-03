@@ -3,8 +3,9 @@ import NewBooksForm from '../../src/component/form/bookFroms/NewBooksForm'
 
 const NewBookPage = () => {
   return (
-    <div>
+    <div className='p-2'>
       NewBookPage
+      <hr/>
       <NewBooksForm/>
 
     </div>

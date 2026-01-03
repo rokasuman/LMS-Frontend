@@ -1,5 +1,6 @@
 import React from 'react';
 import useForm from '../../../../hooks/useForm.js';
+import { postNewAction } from '../../../../feature/books/bookAction.js';
 
 const initialState = {
   year: '',
@@ -15,11 +16,12 @@ const NewBooksForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    postNewAction(form)
     console.log(form); 
   };
 
   return (
-    <div className="container my-5">
+    <div className="container my-5 ">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow-sm">

@@ -1,5 +1,6 @@
 .main{
     min-height: 85.5vh;
+    width: calc(100%-200px);
 }
 .signup-page{
   top: 0;

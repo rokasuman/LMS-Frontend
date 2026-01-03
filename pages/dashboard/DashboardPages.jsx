@@ -2,7 +2,11 @@ import React from 'react'
 
 const DashboardPages = () => {
   return (
-    <div>DashboardPages</div>
+    <div className='p-2'>
+      DashboardPages
+      <hr/>
+      </div>
+    
   )
 }
 
