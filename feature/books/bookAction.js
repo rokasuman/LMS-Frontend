@@ -1,4 +1,5 @@
 import { AdminFetchBookApi, postNewBookApi } from "./bookApi"
+import { setBook } from "./bookSlice"
 
 
 export const postNewAction =async (payload)=>{
@@ -6,7 +7,14 @@ export const postNewAction =async (payload)=>{
     console.log(book)
 }
 
-export const AdminFetchAllBooksAction =async ()=>{
-    const response = await AdminFetchBookApi()
-    console.log(response)
-}
+
+export const AdminFetchAllBooksAction = () => async (dispatch) => {
+  try {
+    const { status, payload } = await AdminFetchBookApi();
+    if (status === "success") {
+      dispatch(setBook(payload));
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
