@@ -1,4 +1,5 @@
-
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import useForm from '../../../../hooks/useForm.js';
 import { postNewAction } from '../../../../feature/books/bookAction.js';
 
@@ -11,13 +12,14 @@ const initialState = {
   genre: '',
 };
 
-const NewBooksForm = () => {
+const EditBooksForm = () => {
+  const dispatch = useDispatch();
   const { form, handleOnchange } = useForm(initialState);
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      await postNewAction(form);
+      await dispatch(postNewAction(form)).unwrap();
       console.log('Book added:', form);
     } catch (error) {
       console.error('Failed to add book:', error);
@@ -31,17 +33,16 @@ const NewBooksForm = () => {
           <div className="card shadow-lg border-0 rounded-4">
             <div className="card-body p-5">
               <h3 className="card-title text-center mb-4 fw-bold text-primary">
-                Add New Book
+                Edit Book
               </h3>
-              <form onSubmit={handleOnSubmit}>
 
+              <form onSubmit={handleOnSubmit}>
                 <div className="form-floating mb-3">
                   <input
                     type="number"
                     className="form-control rounded-3"
                     id="year"
                     name="year"
-                    placeholder="Year"
                     value={form.year}
                     onChange={handleOnchange}
                     required
@@ -55,7 +56,6 @@ const NewBooksForm = () => {
                     className="form-control rounded-3"
                     id="title"
                     name="title"
-                    placeholder="Title"
                     value={form.title}
                     onChange={handleOnchange}
                     required
@@ -69,7 +69,6 @@ const NewBooksForm = () => {
                     className="form-control rounded-3"
                     id="author"
                     name="author"
-                    placeholder="Author"
                     value={form.author}
                     onChange={handleOnchange}
                     required
@@ -83,7 +82,6 @@ const NewBooksForm = () => {
                     className="form-control rounded-3"
                     id="imgUI"
                     name="imgUI"
-                    placeholder="Image URL"
                     value={form.imgUI}
                     onChange={handleOnchange}
                     required
@@ -97,7 +95,6 @@ const NewBooksForm = () => {
                     className="form-control rounded-3"
                     id="isbn"
                     name="isbn"
-                    placeholder="ISBN"
                     value={form.isbn}
                     onChange={handleOnchange}
                     required
@@ -110,28 +107,27 @@ const NewBooksForm = () => {
                     className="form-control rounded-3"
                     id="genre"
                     name="genre"
-                    placeholder="Genre"
                     value={form.genre}
                     onChange={handleOnchange}
                     required
-                    style={{ height: '10px' }}
+                    style={{ height: '100px' }}
                   />
                   <label htmlFor="genre">Genre</label>
                 </div>
 
                 <button
                   type="submit"
-                  className="btn btn-gradient w-100 py-2 fw-bold"
+                  className="btn w-100 py-2 fw-bold"
                   style={{
                     background: 'linear-gradient(90deg, #151519ff, #535465ff)',
                     color: '#fff',
-                    fontSize: '1rem',
                     border: 'none',
                   }}
                 >
-                  Add Book
+                  Save Book
                 </button>
               </form>
+
             </div>
           </div>
         </div>
@@ -140,4 +136,4 @@ const NewBooksForm = () => {
   );
 };
 
-export default NewBooksForm;
+export default EditBooksForm;

@@ -7,14 +7,17 @@ export const postNewAction =async (payload)=>{
     console.log(book)
 }
 
-
 export const AdminFetchAllBooksAction = () => async (dispatch) => {
   try {
-    const { status, payload } = await AdminFetchBookApi();
-    if (status === "success") {
-      dispatch(setBook(payload));
+    const result = await AdminFetchBookApi(); // returns { status, books }
+
+    if (result?.status === "success" && Array.isArray(result.books)) {
+      dispatch(setBook(result.books)); // dispatch the array
+    } else {
+      dispatch(setBook([])); // fallback
     }
   } catch (error) {
     console.error(error);
+    dispatch(setBook([]));
   }
 };

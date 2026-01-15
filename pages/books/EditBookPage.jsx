@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import EditBooksForm from "../../src/component/form/bookFroms/EditBookForm";
+
 
 const EditBookPage = () => {
   return (
-    <div>EditBookPage</div>
-  )
-}
+    <>
+      <h3 className="py-3 px-3">Edit Book</h3>
+      <hr />
+    <EditBooksForm/>
+    </>
+  );
+};
 
-export default EditBookPage
+export default EditBookPage;

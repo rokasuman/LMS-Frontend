@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 
 
 const BookTabel = () => {
 
+  const navigate = useNavigate()
+  const editLink = () =>{
+    navigate("/user/edit-books")
+  }
+ 
+  
   return (
     <div className="container my-5">
       <div className="table-responsive shadow-sm rounded">
@@ -31,7 +39,7 @@ const BookTabel = () => {
                 <span className="badge bg-danger">No</span>
               </td>
               <td>
-                <button className="btn btn-primary btn-sm me-2">
+                <button className="btn btn-primary btn-sm me-2" onClick={editLink}>
                   Edit
                 </button>
                
