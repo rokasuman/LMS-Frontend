@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import useForm from '../../../../hooks/useForm.js';
 import { postNewAction } from '../../../../feature/books/bookAction.js';
+import { useParams } from 'react-router-dom';
 
 const initialState = {
   year: '',
@@ -13,6 +14,9 @@ const initialState = {
 };
 
 const EditBooksForm = () => {
+  //usig the paramhook to get the id 
+  const {_id} = useParams()
+  console.log(_id)
   const dispatch = useDispatch();
   const { form, handleOnchange } = useForm(initialState);
 
@@ -32,8 +36,8 @@ const EditBooksForm = () => {
         <div className="col-md-6">
           <div className="card shadow-lg border-0 rounded-4">
             <div className="card-body p-5">
-              <h3 className="card-title text-center mb-4 fw-bold text-primary">
-                Edit Book
+              <h3 className="card-title text-center mb-4 fw-bold ">
+                Insert the details of the book
               </h3>
 
               <form onSubmit={handleOnSubmit}>
